@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+      <link rel="stylesheet" type="text/css" href="main.css">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <title>Lithi.io</title>
+   </head>
+   <body>
+      <script type="text/javascript" src="cordova.js"></script>
+      <h3 class="i10n" id="SETTINGS_TITLE"></h3>
+      <button type="button" style="display: none;" class="btn btn-success btn-lg">Open account settings</button> <!-- TODO: Remove style & add two <br>. !-->
+      <table id="stable">
+      	<tr>
+         <tr><td class="i10n" id="HISTORY"></td><td>
+      	<button type="button" class="btn btn-danger i10n" id="CLEAR_HISTORY_BUTTON" onclick="clearHistory()"></button>
+      	</td></tr>
+      	<tr><td class="i10n" id="LANGUAGE"></td><td>
+      	<select id="languagev" onchange="changeLang()">
+      	<option value="en">English</option>
+      	<option value="nl">Nederlands</option>
+  		</select>
+  		</td></tr>
+      </table>
+      <br>
+      <button type="button" class="btn btn-success i10n" id="GO_BACK_BUTTON" onclick="window.location.replace('index.html')"></button>
+      <script src="settings.js"></script>
+      <script type="text/javascript" src="strings.js"></script>
+   </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <title>Lithi.io</title>
+</head>
+<body>
+    <!--
+    <div id="center">
+  <h3>Login</h3>
+  <h2>We'll open your browser so you can authenticate.</h2>
+  <h3><a href="https://lithi.io/auth/electron">Open in browser</a></h3>
+  <p id="error"></p>
+  <p id="notice">By logging in, you agree to the <a href="https://lithi.io/terms-of-service.php">Terms of Service</a> and <a href="https://lithi.io/privacy-policy.php">Privacy Policy</a>.</p>
+</div>-->
+<style>
+body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+<h1>Login</h1>
+<form action="javascript:login();">
+  <input required type="email" placeholder="E-Mail" name="email" id="email" maxlength="64"><br>
+  <input required type="password" placeholder="Password" name="password" id="password" maxlength="64"><br>
+  <input type="hidden" name="authcode" placeholder="2FA Code">
+  <br>
+  <input type="submit" class="btn btn-success" id="loginb" value="Login"> <a href="javascript:shell.openItem('https://lithi.io/create-account.php')" class="btn btn-primary">Create Account</a>
+</form> 
+<p id="error"></p>
+<p id="notice">By logging in, you agree to the <a href="javascript:shell.openItem('https://lithi.io/terms-of-service.php')">Terms of Service</a> and <a href="javascript:shell.openItem('https://lithi.io/privacy-policy.php')">Privacy Policy</a>.</p></div>
+<script src="setup.js"></script>
+</body>
+</html>

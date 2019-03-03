@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+      <link rel="stylesheet" type="text/css" href="main.css">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <title>Lithi.io</title>
+   </head>
+   <body>
+      <div class="info">L I T H I I O</div>
+      <button type="button" class="btn btn-success" id="SETTINGS_BUTTON" onclick="location.href='settings.html';"><img src='settings.svg' width="16px" height="16px"></button>
+      <button type="button" class="btn btn-danger" id="LOGOUT_BUTTON" onclick="logout()"><img src='logout.svg' width="16px" height="16px"></button>
+      <br>
+      <button type="button" class="btn btn-primary" id="uploadb" onclick="openUp()"></button>
+      <!--<button type="button" class="btn btn-primary" id="camerab" onclick="takepicupload()"></button>!-->
+      <br><br>
+      <a id="message" ></a>
+      <br><br>
+      <div id="onlu">
+      <progress id="progb" value="0" max="100"></progress>
+      <br><br>
+      <button type="button" class="btn btn-danger i10n" id="CANCEL_BUTTON" onclick="cancelUp(ft)"></button>
+      </div>
+      <br>
+      <table id="table"></table><br>
+      <div id="overlay"></div>
+      <script src="strings.js"></script>
+      <script src="index.js"></script>
+   </body>
+</html>
