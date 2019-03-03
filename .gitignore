@@ -62,3 +62,6 @@ typings/
 
 # Electron build
 dist/
+
+# Build folder
+build/

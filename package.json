@@ -1,12 +1,15 @@
 {
   "name": "lithiio-electron",
+  "build": {
+    "productName": "Lithi.io"
+  },
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "electron ."
   },
-  "author": "MilkGames",
+  "author": "MilkGames <hi@milkgames.pw> (https://milkgames.pw)",
   "license": "ISC",
   "dependencies": {
     "dialogs": "^1.1.20",
