@@ -1,13 +1,24 @@
 {
   "name": "lithiio-electron",
   "build": {
-    "productName": "Lithi.io"
+    "productName": "Lithiio",
+    "publish": ["github"]
   },
   "version": "0.1.0",
-  "description": "",
+  "description": "An Electron application that will allow you to upload files to Lithi.io",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "pack": "node_modules/.bin/electron-builder build --dir",
+    "dist": "node_modules/.bin/electron-builder build --linux --win --mac --public always",
+    "dist-linux": "node_modules/.bin/electron-builder build --linux snap deb",
+    "dist-win": "node_modules/.bin/electron-builder build --win",
+    "dist-mac": "node_modules/.bin/electron-builder build --mac"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "github:MilkGames/lithiio-electron"
   },
   "author": "MilkGames <hi@milkgames.pw> (https://milkgames.pw)",
   "license": "ISC",
