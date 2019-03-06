@@ -3,7 +3,7 @@ const fs = require('fs');
 const lithiio = require('node-lithiio-upload');
 const timeago = require("timeago.js");
 var clipboardmultiu = "";
-if (!localStorage.getItem("language")) {
+if (localStorage.getItem("language") == "") {
     localStorage.setItem("language", "en");
 };
 if (!localStorage.getItem("apikey")) {
@@ -80,12 +80,12 @@ function renderHistory() {
         document.getElementById("table").innerHTML = "";
     }
     var uhistory = JSON.parse(localStorage.getItem("history"));
-    var imgs = ["png", "jpg", "jpeg", "gif", "webp", "svg"];
+    var imgs = ["png", "jpg", "jpeg", "gif", "webp"];
     for (var i = 0; i < uhistory.length; i++) {
         if (imgs.includes(uhistory[i].url.split('.').pop())) {
-            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openItem('" + uhistory[i].url + "')\"><img class=thumb src=" + uhistory[i].url + "><div class=type>Picture </a><img class=link src=link.png></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
+            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=" + uhistory[i].url + "><div class=type>Picture </a><img class=link src=link.png></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
         } else {
-            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openItem('" + uhistory[i].url + "')\"><img class=thumb src=file.png><div class=type>File (." + uhistory[i].url.split('.').pop() + ")</a> <img class=link src=link.png></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
+            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=file.png><div class=type>File (." + uhistory[i].url.split('.').pop() + ")</a> <img class=link src=link.png></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
         }
     }
     timeago.render(document.querySelectorAll('.timestamp'));
@@ -104,6 +104,13 @@ function uploadfp(path) {
             });
             jsonStr = JSON.stringify(obj);
             localStorage.setItem("history", jsonStr);
+            let uploadnoti = new Notification('Upload successful', {
+                body: url,
+                icon: url
+            });
+            uploadnoti.onclick = () => {
+                shell.openExternal(url);
+            }
             renderHistory();
         }).catch(function(error) { // If there's an error uploading the file
         dialog.showErrorBox('oopsie', error)
@@ -124,6 +131,12 @@ function uploadf(data) {
             });
             jsonStr = JSON.stringify(obj);
             localStorage.setItem("history", jsonStr);
+            let uploadnoti = new Notification('Upload successful', {
+                body: url
+            });
+            uploadnoti.onclick = () => {
+                shell.openExternal(url);
+            }
             renderHistory();
         }).catch(function(error) { // If there's an error uploading the file
         dialog.showErrorBox('oopsie', error)
