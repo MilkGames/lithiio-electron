@@ -3,7 +3,8 @@ const fs = require('fs');
 const lithiio = require('node-lithiio-upload');
 const timeago = require("timeago.js");
 var clipboardmultiu = "";
-if (localStorage.getItem("language") == "") {
+var imgs = ["png", "jpg", "jpeg", "gif", "webp"];
+if (localStorage.getItem("language")) {
     localStorage.setItem("language", "en");
 };
 if (!localStorage.getItem("apikey")) {
@@ -79,8 +80,7 @@ function renderHistory() {
     if (document.getElementById("table").rows.length > 0) {
         document.getElementById("table").innerHTML = "";
     }
-    var uhistory = JSON.parse(localStorage.getItem("history"));
-    var imgs = ["png", "jpg", "jpeg", "gif", "webp"];
+    let uhistory = JSON.parse(localStorage.getItem("history"));
     for (var i = 0; i < uhistory.length; i++) {
         if (imgs.includes(uhistory[i].url.split('.').pop())) {
             document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=" + uhistory[i].url + "><div class=type>Picture </a><img class=link src=link.png></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
@@ -97,16 +97,17 @@ function uploadfp(path) {
             document.getElementById("message").setAttribute("href", url);
             document.getElementById("message").innerHTML = url;
             clipboard.writeText(url);
-            var obj = JSON.parse(localStorage.getItem("history"));
+            let date = new Date();
+            let obj = JSON.parse(localStorage.getItem("history"));
             obj.push({
                 url: url,
-                time: new Date()
+                time: date
             });
             jsonStr = JSON.stringify(obj);
             localStorage.setItem("history", jsonStr);
             let uploadnoti = new Notification('Upload successful', {
-                body: url,
-                icon: url
+                body: url + " - " + date,
+                icon: (imgs.includes(url.split('.').pop()) ? url : "./file.png")
             });
             uploadnoti.onclick = () => {
                 shell.openExternal(url);
@@ -124,15 +125,17 @@ function uploadf(data) {
             document.getElementById("message").setAttribute("href", url);
             document.getElementById("message").innerHTML = url;
             clipboard.writeText(url);
-            var obj = JSON.parse(localStorage.getItem("history"));
+            let date = new Date();
+            let obj = JSON.parse(localStorage.getItem("history"));
             obj.push({
                 url: url,
-                time: new Date()
+                time: date
             });
             jsonStr = JSON.stringify(obj);
             localStorage.setItem("history", jsonStr);
             let uploadnoti = new Notification('Upload successful', {
-                body: url
+                body: url + " - " + date,
+                icon: (imgs.includes(url.split('.').pop()) ? url : "./file.png")
             });
             uploadnoti.onclick = () => {
                 shell.openExternal(url);
