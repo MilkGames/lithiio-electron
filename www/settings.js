@@ -10,12 +10,12 @@ xhr.addEventListener("readystatechange", function () {
 function clearHistory() {
 	dialog.showMessageBox({
 		type: 'question',
-		buttons: [STRINGS[lang].YES, STRINGS[lang].NO],
-		defaultId: 1,
+		buttons: [STRINGS[lang].CANCEL_BUTTON, STRINGS[lang].CLEAR_HISTORY_BUTTON],
+		defaultId: 0,
 		title: STRINGS[lang].CONFIRM_CLEAR_UPLOAD_HISTORY_TITLE,
 		message: STRINGS[lang].CONFIRM_CLEAR_UPLOAD_HISTORY
 	}, function(response){
-		if (response == 0) {
+		if (response == 1) {
 			localStorage.removeItem("history");
 			dialog.showMessageBox({
 				type: 'info',

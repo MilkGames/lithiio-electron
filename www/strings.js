@@ -4,6 +4,7 @@ var STRINGS = {
 	"ONLINE": "L I T H I I O", // DO NOT TRANSLATE
 	"CONFIRM_LOGOUT_TITLE": "Logout",
 	"CONFIRM_LOGOUT": "Are you SURE you want to logout? This will clear your upload history!",
+	"LOGOUT_BUTTON": "Logout",
 	"CONFIRM_CLEAR_UPLOAD_HISTORY_TITLE": "Clear history",
 	"CONFIRM_CLEAR_UPLOAD_HISTORY": "This will clear your upload history, are you sure?",
 	"CLEAR_UPLOAD_HISTORY_DONE": "History cleared.",
@@ -24,6 +25,7 @@ var STRINGS = {
 	"ONLINE": "L I T H I I O", // DO NOT TRANSLATE
 	"CONFIRM_LOGOUT_TITLE": "Uitloggen",
 	"CONFIRM_LOGOUT": "Weet je het ZEKER dat je wilt uitloggen? Je upload geschiedenis wordt gewist!",
+	"LOGOUT_BUTTON": "Uitloggen",
 	"CONFIRM_CLEAR_UPLOAD_HISTORY_TITLE": "Geschiedenis wissen",
 	"CONFIRM_CLEAR_UPLOAD_HISTORY": "Dit zal je upload geschiedenis wissen, weet je het zeker?",
 	"CLEAR_UPLOAD_HISTORY_DONE": "Geschiedenis gewist.",
