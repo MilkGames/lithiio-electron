@@ -93,63 +93,82 @@ function renderHistory() {
 
 function uploadfp(path) {
     if (!path) return;
-    lithiio.upload(localStorage.getItem('apikey'), fs.createReadStream(path)).then(function(url) {
-            document.getElementById("message").setAttribute("href", url);
-            document.getElementById("message").innerHTML = url;
-            clipboard.writeText(url);
-            let date = new Date();
-            let obj = JSON.parse(localStorage.getItem("history"));
-            obj.push({
-                url: url,
-                time: date
-            });
-            jsonStr = JSON.stringify(obj);
-            localStorage.setItem("history", jsonStr);
-            let uploadnoti = new Notification('Upload successful', {
-                body: url + " - " + date,
-                icon: (imgs.includes(url.split('.').pop()) ? url : "./file.png")
-            });
-            uploadnoti.onclick = () => {
-                shell.openExternal(url);
-            }
-            renderHistory();
-        }).catch(function(error) { // If there's an error uploading the file
+    document.getElementById("onlu").style.visibility = 'visible';
+    upload = lithiio.upload(localStorage.getItem('apikey'), fs.createReadStream(path)).on('progress', function(prog){
+        document.getElementById("progb").value = prog;
+    }).once('success', function(url){
+        document.getElementById("message").setAttribute("href", 'javascript:shell.openExternal("' + url + '")');
+        document.getElementById("message").innerHTML = url;
+        document.getElementById("progb").value = 0;
+        document.getElementById("onlu").style.visibility = 'hidden';
+        clipboard.writeText(url);
+        let date = new Date();
+        let obj = JSON.parse(localStorage.getItem("history"));
+        obj.push({
+            url: url,
+            time: date
+        });
+        jsonStr = JSON.stringify(obj);
+        localStorage.setItem("history", jsonStr);
+        let uploadnoti = new Notification('Upload successful', {
+            body: url + " - " + date,
+            icon: (imgs.includes(url.split('.').pop()) ? url : "./file.png")
+        });
+        uploadnoti.onclick = () => {
+            shell.openExternal(url);
+        }
+        renderHistory();
+    }).once('error', function(error){
+    if (error !== 'Canceled') {
         dialog.showErrorBox('oopsie', error)
         console.error(error);
+    } else {
+        document.getElementById("progb").value = 0;
+        document.getElementById("onlu").style.visibility = 'hidden';
+    }
     });
 }
 
 function uploadf(data) {
     if (!data) return;
-    lithiio.upload(localStorage.getItem('apikey'), data.toDataURL()).then(function(url) {
-            document.getElementById("message").setAttribute("href", url);
-            document.getElementById("message").innerHTML = url;
-            clipboard.writeText(url);
-            let date = new Date();
-            let obj = JSON.parse(localStorage.getItem("history"));
-            obj.push({
-                url: url,
-                time: date
-            });
-            jsonStr = JSON.stringify(obj);
-            localStorage.setItem("history", jsonStr);
-            let uploadnoti = new Notification('Upload successful', {
-                body: url + " - " + date,
-                icon: (imgs.includes(url.split('.').pop()) ? url : "./file.png")
-            });
-            uploadnoti.onclick = () => {
-                shell.openExternal(url);
-            }
-            renderHistory();
-        }).catch(function(error) { // If there's an error uploading the file
+    document.getElementById("onlu").style.visibility = 'visible';
+    upload = lithiio.upload(localStorage.getItem('apikey'), data.toDataURL()).on('progress', function(prog){
+        document.getElementById("progb").value = prog;
+    }).once('success', function(url){
+        document.getElementById("message").setAttribute("href", 'javascript:shell.openExternal("' + url + '")');
+        document.getElementById("message").innerHTML = url;
+        document.getElementById("progb").value = 0;
+        document.getElementById("onlu").style.visibility = 'hidden';
+        clipboard.writeText(url);
+        let date = new Date();
+        let obj = JSON.parse(localStorage.getItem("history"));
+        obj.push({
+            url: url,
+            time: date
+        });
+        jsonStr = JSON.stringify(obj);
+        localStorage.setItem("history", jsonStr);
+        let uploadnoti = new Notification('Upload successful', {
+            body: url + " - " + date,
+            icon: (imgs.includes(url.split('.').pop()) ? url : "./file.png")
+        });
+        uploadnoti.onclick = () => {
+            shell.openExternal(url);
+        }
+        renderHistory();
+    }).once('error', function(error){
+    if (error !== 'Canceled') {
         dialog.showErrorBox('oopsie', error)
         console.error(error);
+    } else {
+        document.getElementById("progb").value = 0;
+        document.getElementById("onlu").style.visibility = 'hidden';
+    }
     });
 }
 
 function cancelUp() {
-    ft.abort();
-    cordova.plugins.firebase.analytics.logEvent("cancel");
+    lithiio.cancel(upload)
 };
 
 function openUp() {

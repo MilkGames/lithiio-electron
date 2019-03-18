@@ -1,6 +1,10 @@
 {
   "name": "lithiio-electron",
   "build": {
+    "files": [
+      "**/*",
+      "build/icon.png"
+    ],
     "productName": "Lithiio",
     "publish": [
       "github"
@@ -26,12 +30,12 @@
   "dependencies": {
     "dialogs": "^1.1.20",
     "electron-updater": "^4.0.6",
-    "node-lithiio-upload": "^1.0.2",
+    "node-lithiio-upload": "^1.0.4",
     "timeago.js": "^4.0.0-beta.2"
   },
   "devDependencies": {
-    "electron": "^4.0.6",
-    "electron-rebuild": "^1.8.4",
-    "electron-builder": "^20.38.5"
+    "electron": "^4.1.0",
+    "electron-builder": "^20.39.0",
+    "electron-rebuild": "^1.8.4"
   }
 }
