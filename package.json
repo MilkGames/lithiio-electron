@@ -17,8 +17,8 @@
     "postinstall": "install-app-deps",
     "start": "electron .",
     "pack": "node_modules/.bin/electron-builder build --dir",
-    "release": "node_modules/.bin/electron-builder build --linux snap deb --win --publish always",
-    "dist-linux": "node_modules/.bin/electron-builder build --linux snap deb",
+    "release": "node_modules/.bin/electron-builder build --linux appImage deb --win --publish always",
+    "dist-linux": "node_modules/.bin/electron-builder build --linux appImage deb",
     "dist-win": "node_modules/.bin/electron-builder build --win"
   },
   "repository": {
