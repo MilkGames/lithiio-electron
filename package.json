@@ -1,6 +1,6 @@
 {
   "name": "lithiio-electron",
-  "build": {  
+  "build": {
     "files": [
       "**/*",
       "build/icon.*"
@@ -10,7 +10,7 @@
       "github"
     ]
   },
-  "version": "0.1.1",
+  "version": "0.1.11",
   "description": "An Electron application that will allow you to upload files to Lithi.io",
   "main": "index.js",
   "scripts": {
