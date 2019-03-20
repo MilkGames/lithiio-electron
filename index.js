@@ -1,6 +1,6 @@
-const { app, BrowserWindow, shell, Menu, Tray } = require('electron')
+const { app, BrowserWindow, shell, Menu, Tray, nativeImage } = require('electron')
 const { autoUpdater } = require("electron-updater")
-
+const path = require('path');
 app.on('ready', function(){
 	autoUpdater.checkForUpdatesAndNotify();
 	win = new BrowserWindow({ width: 800, height: 600, nodeIntegration: true, frame: true, show: false, icon: './build/icon.png' });
@@ -10,7 +10,7 @@ app.on('ready', function(){
 		win.maximize();
 		win.setMenuBarVisibility(false);
 	});
-	tray = new Tray('./build/icon.png')
+	tray = new Tray(nativeImage.createFromPath(path.join(__dirname, '/build/icon.png')).resize({ width: 16, height: 16 }));
 	var contextMenu = Menu.buildFromTemplate([
 		/*{ click: function(){
 			win.isVisible() ? win.hide() : win.show();

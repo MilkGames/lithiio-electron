@@ -1,9 +1,9 @@
 {
   "name": "lithiio-electron",
-  "build": {
+  "build": {  
     "files": [
       "**/*",
-      "build/icon.png"
+      "build/icon.*"
     ],
     "productName": "Lithiio",
     "publish": [
