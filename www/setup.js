@@ -13,3 +13,8 @@ function login() {
 	document.getElementById("error").innerHTML = error;
 });
 };
+document.getElementById("password").addEventListener("keyup", function(event) {
+	if (event.key === "Enter") {
+		login();
+	}
+});

@@ -1,5 +1,6 @@
-const { app, BrowserWindow, shell, Menu, Tray, nativeImage } = require('electron')
+const { app, BrowserWindow, shell, Menu, Tray, nativeImage, dialog } = require('electron')
 const { autoUpdater } = require("electron-updater")
+autoUpdater.autoDownload = false
 const path = require('path');
 app.on('ready', function(){
 	autoUpdater.checkForUpdatesAndNotify();
@@ -10,7 +11,7 @@ app.on('ready', function(){
 		win.maximize();
 		win.setMenuBarVisibility(false);
 	});
-	tray = new Tray(nativeImage.createFromPath(path.join(__dirname, '/build/icon.png')).resize({ width: 16, height: 16 }));
+	tray = new Tray(nativeImage.createFromPath(path.join(__dirname, '/build/icon.png')));
 	var contextMenu = Menu.buildFromTemplate([
 		/*{ click: function(){
 			win.isVisible() ? win.hide() : win.show();
@@ -36,3 +37,33 @@ app.on('ready', function(){
 app.on('window-all-closed', () => {
 	app.quit();
 });
+
+autoUpdater.on('error', (error) => {
+  dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+})
+
+autoUpdater.on('update-available', () => {
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Found Updates',
+    message: 'Found updates, do you want update now?',
+    buttons: ['No', 'Sure']
+  }, (buttonIndex) => {
+    if (buttonIndex === 1) {
+      autoUpdater.downloadUpdate()
+    }
+    else {
+      autoUpdater.enabled = true
+      autoUpdater = null
+    }
+  })
+})
+
+autoUpdater.on('update-downloaded', () => {
+  dialog.showMessageBox({
+    title: 'Install Updates',
+    message: 'Updates downloaded, restarting for update...'
+  }, () => {
+    setImmediate(() => autoUpdater.quitAndInstall())
+  })
+})

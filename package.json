@@ -8,7 +8,16 @@
     "productName": "Lithiio",
     "publish": [
       "github"
-    ]
+    ],
+    "linux": {
+      "desktop": {
+        "Name": "Lithiio",
+        "Icon": "build/icon.png",
+        "Comment": "An Electron application that will allow you to upload files to Lithi.io",
+        "Type": "Application",
+        "Categories": "Utility"
+      }
+    }
   },
   "version": "0.1.11",
   "description": "An Electron application that will allow you to upload files to Lithi.io",

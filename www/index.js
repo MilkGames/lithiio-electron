@@ -83,12 +83,15 @@ function renderHistory() {
     let uhistory = JSON.parse(localStorage.getItem("history"));
     for (var i = 0; i < uhistory.length; i++) {
         if (imgs.includes(uhistory[i].url.split('.').pop())) {
-            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=" + uhistory[i].url + "><div class=type>Picture </a><img class=link src=link.png></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
+            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=" + uhistory[i].url + "><div class=type>Picture </a></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
         } else {
-            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=file.png><div class=type>File (." + uhistory[i].url.split('.').pop() + ")</a> <img class=link src=link.png></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
+            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=file.png><div class=type>File (." + uhistory[i].url.split('.').pop() + ")</a></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
         }
     }
     timeago.render(document.querySelectorAll('.timestamp'));
+    if (uhistory.length !== 0 && !document.getElementById("fileuploads")) {
+        document.getElementById("table").insertAdjacentHTML("beforeBegin", "<h3 id='fileuploads'>File Uploads</h3>");
+    }
 };
 
 function uploadfp(path) {
