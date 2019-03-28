@@ -12,14 +12,12 @@
     "linux": {
       "desktop": {
         "Name": "Lithiio",
-        "Icon": "build/icon.png",
-        "Comment": "An Electron application that will allow you to upload files to Lithi.io",
         "Type": "Application",
         "Categories": "Utility"
       }
     }
   },
-  "version": "0.1.11",
+  "version": "0.1.2",
   "description": "An Electron application that will allow you to upload files to Lithi.io",
   "main": "index.js",
   "scripts": {
