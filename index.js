@@ -59,7 +59,7 @@ autoUpdater.on('update-downloaded', () => {
   dialog.showMessageBox({
   	type: 'info',
     title: 'Install Updates',
-    message: 'Updates downloaded, restarting for update...',
+    message: 'Updates downloaded, restart?',
     buttons: ['Restart']
   }, () => {
     setImmediate(() => autoUpdater.quitAndInstall())

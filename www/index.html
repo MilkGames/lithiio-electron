@@ -3,24 +3,40 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
       <link rel="stylesheet" type="text/css" href="main.css">
+      <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
       <title>Lithiio</title>
    </head>
    <body>
       <div class="info">L I T H I I O</div>
-      <button type="button" class="btn btn-success" id="SETTINGS_BUTTON" onclick="location.href='settings.html';"></button>
-      <button type="button" class="btn btn-danger" id="LOGOUT_BUTTON" onclick="logout()"></button>
-      <button type="button" class="btn btn-primary" id="uploadb" onclick="openUp()"></button>
+      <button type="button" class="ui primary button" id="SETTINGS_BUTTON" onclick="location.href='settings.html';"></button>
+      <button type="button" class="negative ui button" id="LOGOUT_BUTTON" onclick="logout()"></button>
+      <button type="button" class="ui primary button" id="uploadb" onclick="openUp()"></button>
       <!--<button type="button" class="btn btn-primary" id="camerab" onclick="takepicupload()"></button>!-->
       <a id="message" ></a>
       <div id="onlu">
-      <progress id="progb" value="0" max="100"></progress>
+         <div id="progb" class="ui progress">
+          <div class="bar">
+           <div class="progress"></div>
+        </div>
+        <div class="label">Uploading Files</div>
+     </div>
       <button type="button" class="btn btn-danger i10n" id="CANCEL_BUTTON" onclick="cancelUp()"></button>
       </div>
-      <table id="table"></table>
+      <table class="ui celled inverted table" id="table">
+      	<thead>
+      		<tr>
+      			<th class="i10n" id="FILE_INFO"></th>
+      			<th class="i10n" id="ACTIONS"></th>
+      		</tr>
+      		<tbody>
+      	</table>
+      </tbody>
       <div id="overlay"></div>
       <script src="strings.js"></script>
+      <script src="semantic/dist/semantic.min.js"></script>
       <script src="index.js"></script>
    </body>
 </html>

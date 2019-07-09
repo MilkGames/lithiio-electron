@@ -1,4 +1,7 @@
 const {dialog} = require('electron').remote;
+$('#languagev')
+  .dropdown()
+;
 document.getElementById("languagev").value = localStorage.getItem("language");
 var xhr = new XMLHttpRequest();
 xhr.addEventListener("readystatechange", function () {

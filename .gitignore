@@ -63,5 +63,8 @@ typings/
 # Electron build
 dist/
 
+# Semantic
+www/semantic/
+
 # Build folder
 # build/ - I actually want to keep this. It's pretty much required while building.

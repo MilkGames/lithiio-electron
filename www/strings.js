@@ -18,7 +18,9 @@ var STRINGS = {
 	"THEME": "Theme",
 	"DARK_THEME": "Dark",
 	"LIGHT_THEME": "Light",
-	"GO_BACK_BUTTON": "Back"
+	"GO_BACK_BUTTON": "Back",
+	"FILE_INFO": "File Information",
+	"ACTIONS": "Actions"
 	},
 "nl": {
 	"OFFLINE": "Offline",
@@ -39,7 +41,9 @@ var STRINGS = {
 	"THEME": "Thema",
 	"DARK_THEME": "Donker",
 	"LIGHT_THEME": "Licht",
-	"GO_BACK_BUTTON": "Terug"
+	"GO_BACK_BUTTON": "Terug",
+	"FILE_INFO": "Bestand Informatie",
+	"ACTIONS": "Acties"
 	}
 }
 

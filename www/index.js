@@ -76,16 +76,56 @@ window.addEventListener("online", function(event){ // also seems broken
     document.getElementsByClassName("info")[0].innerHTML = STRINGS[lang].ONLINE;
 });
 
-function renderHistory() {
-    if (document.getElementById("table").rows.length > 0) {
-        document.getElementById("table").innerHTML = "";
-    }
+function copyHistory(id) {
+    clipboard.writeText(JSON.parse(localStorage.getItem("history"))[id].url);
+}
+
+function removeHistory(id) {
     let uhistory = JSON.parse(localStorage.getItem("history"));
+    uhistory.splice(id, 1);
+    localStorage.setItem("history", JSON.stringify(uhistory));
+    renderHistory();
+}
+
+function renderHistory() {
+    let uhistory = JSON.parse(localStorage.getItem("history"));
+    let table = document.getElementById("table");
+    if (document.getElementById("table").rows.length > 1) {
+        document.getElementById("table").rows = "";
+        for (var i = 1; i < table.rows.length; i++) {
+            table.rows[i].remove(); // Loop through every row (that isn't the header) to rerender
+            // TODO: Find better way to do this
+        }
+    }
     for (var i = 0; i < uhistory.length; i++) {
         if (imgs.includes(uhistory[i].url.split('.').pop())) {
-            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=" + uhistory[i].url + "><div class=type>Picture </a></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
+            table.tBodies[0].insertAdjacentHTML("beforebegin", `<tr>
+                <td>
+                <div class=imageblock>
+                <a href="javascript:shell.openExternal('${uhistory[i].url}')">
+                <img class=thumb src="${uhistory[i].url}">
+                <div class=type>Picture </a>
+                </div>
+                <div class=timestamp datetime="${uhistory[i].time}"></div></div>
+                </td>
+                <td><a href="#" onclick="removeHistory('${i}')">
+                <img width=18 src="x.png"</a>
+                <a href="#" onclick="copyHistory('${i}')">
+                <img width=18 src="copy.png"</a></tr>`);
         } else {
-            document.getElementById("table").insertAdjacentHTML("afterbegin", "<tr> <td><div class=imageblock><a href=\"javascript:shell.openExternal('" + uhistory[i].url + "')\"><img class=thumb src=file.png><div class=type>File (." + uhistory[i].url.split('.').pop() + ")</a></div><div class=timestamp datetime=" + uhistory[i].time + "></div></div></td></tr>");
+            table.tBodies[0].insertAdjacentHTML("beforebegin", `<tr>
+                <td>
+                <div class=imageblock>
+                <a href="javascript:shell.openExternal('${uhistory[i].url}')">
+                <img class=thumb src="file.png">
+                <div class=type>File (.${uhistory[i].url.split('.').pop()})</a>
+                </div>
+                <div class=timestamp datetime="${uhistory[i].time}"></div></div>
+                </td>
+                <td><a href="#" onclick="removeHistory('${i}')">
+                <img width=18 src="x.png"</a>
+                <a href="#" onclick="copyHistory('${i}')">
+                <img width=18 src="copy.png"</a></tr>`);
         }
     }
     timeago.render(document.querySelectorAll('.timestamp'));
@@ -98,7 +138,9 @@ function uploadfp(path) {
     if (!path) return;
     document.getElementById("onlu").style.visibility = 'visible';
     upload = lithiio.upload(localStorage.getItem('apikey'), fs.createReadStream(path)).on('progress', function(prog){
-        document.getElementById("progb").value = prog;
+        $('#progb').progress({
+          percent: prog
+      });
     }).once('success', function(url){
         document.getElementById("message").setAttribute("href", 'javascript:shell.openExternal("' + url + '")');
         document.getElementById("message").innerHTML = url;
@@ -122,13 +164,13 @@ function uploadfp(path) {
         }
         renderHistory();
     }).once('error', function(error){
-    if (error !== 'Canceled') {
-        dialog.showErrorBox('oopsie', error)
-        console.error(error);
-    } else {
-        document.getElementById("progb").value = 0;
-        document.getElementById("onlu").style.visibility = 'hidden';
-    }
+        if (error !== 'Canceled') {
+            dialog.showErrorBox('oopsie', error)
+            console.error(error);
+        } else {
+            document.getElementById("progb").value = 0;
+            document.getElementById("onlu").style.visibility = 'hidden';
+        }
     });
 }
 
@@ -160,13 +202,13 @@ function uploadf(data) {
         }
         renderHistory();
     }).once('error', function(error){
-    if (error !== 'Canceled') {
-        dialog.showErrorBox('oopsie', error)
-        console.error(error);
-    } else {
-        document.getElementById("progb").value = 0;
-        document.getElementById("onlu").style.visibility = 'hidden';
-    }
+        if (error !== 'Canceled') {
+            dialog.showErrorBox('oopsie', error)
+            console.error(error);
+        } else {
+            document.getElementById("progb").value = 0;
+            document.getElementById("onlu").style.visibility = 'hidden';
+        }
     });
 }
 
