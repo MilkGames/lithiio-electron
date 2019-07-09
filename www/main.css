@@ -134,6 +134,11 @@ td, th {
   border-right: hidden;
   padding: 8px;
 }
+#progb {
+  width: 25%;
+  margin-left: 37.5%;
+  margin-right: 37.5%;
+}
 .thumb {
   float: left;
   width: 50px;

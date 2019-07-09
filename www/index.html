@@ -3,9 +3,11 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="main.css">
       <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+      <script type="text/javascript">window.$ = window.jQuery = require('./jquery.js');</script>
+      <script src="jquery.js"></script>
+      <link rel="stylesheet" type="text/css" href="main.css">
+      <script src="semantic/dist/semantic.min.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
       <title>Lithiio</title>
    </head>
@@ -17,13 +19,13 @@
       <!--<button type="button" class="btn btn-primary" id="camerab" onclick="takepicupload()"></button>!-->
       <a id="message" ></a>
       <div id="onlu">
-         <div id="progb" class="ui progress">
+         <div id="progb" class="ui active progress">
           <div class="bar">
            <div class="progress"></div>
         </div>
-        <div class="label">Uploading Files</div>
+        <div style="color: white;" class="label">Uploading File(s)</div>
      </div>
-      <button type="button" class="btn btn-danger i10n" id="CANCEL_BUTTON" onclick="cancelUp()"></button>
+      <button type="button" class="negative ui button i10n" id="CANCEL_BUTTON" onclick="cancelUp()"></button>
       </div>
       <table class="ui celled inverted table" id="table">
       	<thead>
