@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script type="text/javascript">window.$ = window.jQuery = require('./jquery.js');</script>
       <script src="semantic/dist/semantic.min.js"></script>
       <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
       <link rel="stylesheet" type="text/css" href="main.css">
@@ -12,16 +12,15 @@
       <title>Lithiio</title>
    </head>
    <body>
-      <script type="text/javascript" src="cordova.js"></script>
       <h3 class="i10n" id="SETTINGS_TITLE"></h3>
       <button type="button" style="display: none;" class="btn btn-success btn-lg">Open account settings</button> <!-- TODO: Remove style. !-->
       <table id="stable">
       	<tr>
          <tr><td class="i10n" id="HISTORY"></td><td>
-      	<button type="button" class="btn btn-danger i10n" id="CLEAR_HISTORY_BUTTON" onclick="clearHistory()"></button>
+      	<button type="button" class="negative ui button i10n" id="CLEAR_HISTORY_BUTTON" onclick="clearHistory()"></button>
       	</td></tr>
       	<tr><td class="i10n" id="LANGUAGE"></td><td>
-      	<select class="ui compact selection dropdown" id="languagev" onchange="changeLang()">
+      	<select class="ui compact inverted dropdown" id="languagev">
       	<option value="en">English</option>
       	<option value="nl">Nederlands</option>
   		</select>

@@ -4,7 +4,7 @@ const lithiio = require('node-lithiio-upload');
 const timeago = require("timeago.js");
 var clipboardmultiu = "";
 var imgs = ["png", "jpg", "jpeg", "gif", "webp"];
-if (localStorage.getItem("language")) {
+if (!localStorage.getItem("language")) {
     localStorage.setItem("language", "en");
 };
 if (!localStorage.getItem("apikey")) {

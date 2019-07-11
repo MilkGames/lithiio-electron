@@ -1,8 +1,13 @@
 const {dialog} = require('electron').remote;
-$('#languagev')
-  .dropdown()
-;
 document.getElementById("languagev").value = localStorage.getItem("language");
+$('#languagev')
+.dropdown({
+	onChange: function(value, text, $selectedItem) {
+		localStorage.setItem("language", value);
+		window.location.reload()
+	}
+})
+;
 var xhr = new XMLHttpRequest();
 xhr.addEventListener("readystatechange", function () {
 	if (this.readyState === 4) {
@@ -11,6 +16,9 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 function clearHistory() {
+	$('.ui.basic.modal')
+  .modal('show')
+;
 	dialog.showMessageBox({
 		type: 'question',
 		buttons: [STRINGS[lang].CANCEL_BUTTON, STRINGS[lang].CLEAR_HISTORY_BUTTON],
@@ -29,9 +37,4 @@ function clearHistory() {
 			});
 		}
 	})
-}
-
-function changeLang() {
-	localStorage.setItem("language", document.getElementById("languagev").value);
-	window.location.reload()
 }
