@@ -36,13 +36,13 @@
   "license": "ISC",
   "dependencies": {
     "dialogs": "^1.1.20",
-    "electron-updater": "^4.0.6",
+    "electron-updater": "^4.2.5",
     "node-lithiio-upload": "^1.0.4",
-    "timeago.js": "^4.0.0-beta.2"
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
-    "electron": "^4.1.0",
-    "electron-builder": "^20.39.0",
-    "electron-rebuild": "^1.8.4"
+    "electron": "^4.2.12",
+    "electron-builder": "^20.44.4",
+    "electron-rebuild": "^1.10.1"
   }
 }
