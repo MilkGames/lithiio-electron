@@ -41,7 +41,7 @@
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
-    "electron": "^4.2.12",
+    "electron": "^7.2.4",
     "electron-builder": "^20.44.4",
     "electron-rebuild": "^1.10.1"
   }
