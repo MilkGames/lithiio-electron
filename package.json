@@ -35,14 +35,14 @@
   "author": "MilkGames <hi@milkgames.pw> (https://milkgames.pw)",
   "license": "ISC",
   "dependencies": {
-    "dialogs": "^1.1.20",
-    "electron-updater": "^4.3.1",
+    "dialogs": "^2.0.1",
+    "electron-updater": "^4.3.5",
     "node-lithiio-upload": "^1.0.7",
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
-    "electron": "^7.3.2",
-    "electron-builder": "^20.44.4",
-    "electron-rebuild": "^1.11.0"
+    "electron": "^10.1.4",
+    "electron-builder": "^22.9.1",
+    "electron-rebuild": "^2.3.2"
   }
 }
