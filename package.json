@@ -32,7 +32,7 @@
     "type": "git",
     "url": "github:MilkGames/lithiio-electron"
   },
-  "author": "MilkGames <hi@milkgames.pw> (https://milkgames.pw)",
+  "author": "MilkGames <memegames1337@gmail.com> (https://milk.games)",
   "license": "ISC",
   "dependencies": {
     "dialogs": "^2.0.1",
